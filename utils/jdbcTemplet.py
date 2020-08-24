@@ -1,5 +1,7 @@
 import pymysql as jdbc # 导入mysql连接包
+import time
 from config.Properties import Properties
+import traceback
 
 
 #获取数据库连接
@@ -31,3 +33,27 @@ def query(sql,*args):
     res = cursor.fetchall()
     closeConnect(conn,cursor)
     return res
+
+def insert_histery(data):
+    """
+    根据传入的data列表 循环插入表中
+    :param data: 数据列表 封装的是字典
+    :return:
+    """
+    cursor = None
+    conn = None
+    try:
+        conn,cursor = getConnect()
+        print(f"{time.asctime()}开始插入历史数据")
+        sql = "insert into history values (%s,%s,%s,%s,%s,%s,%s,%s)"
+        for dict in data:
+            cursor.execute(sql,[dict['ds'],dict['confirm'],dict['confirm_add'],
+                                dict['suspect'], dict['heal'],dict['heal_add'],
+                                dict['dead'],dict['dead_add']])
+        conn.commit()
+        print(f"{time.asctime()}插入历史数据完毕")
+    except:
+        traceback.print_exc()
+    finally:
+        closeConnect(conn,cursor)
+
