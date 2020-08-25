@@ -23,7 +23,7 @@ CREATE TABLE `history` (
   `ds` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '日期',
   `confirm` int(11) DEFAULT NULL COMMENT '累计确诊',
   `confirm_add` int(11) DEFAULT NULL COMMENT '当日新增确诊',
-  `suspect` int(11) DEFAULT NULL COMMENT '剩余疑似',
+  `now_confirm` int(11) DEFAULT NULL COMMENT '现有确诊',
   `heal` int(11) DEFAULT NULL COMMENT '累计治愈',
   `heal_add` int(11) DEFAULT NULL COMMENT '累计死亡',
   `dead` int(11) DEFAULT NULL COMMENT '累计死亡',

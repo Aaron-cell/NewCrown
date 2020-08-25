@@ -34,9 +34,9 @@ def query(sql,*args):
     closeConnect(conn,cursor)
     return res
 
-def insert_histery(data):
+def insertHistery(dict):
     """
-    根据传入的data列表 循环插入表中
+    根据传入的dict字典 循环插入表中
     :param data: 数据列表 封装的是字典
     :return:
     """
@@ -46,14 +46,29 @@ def insert_histery(data):
         conn,cursor = getConnect()
         print(f"{time.asctime()}开始插入历史数据")
         sql = "insert into history values (%s,%s,%s,%s,%s,%s,%s,%s)"
-        for dict in data:
-            cursor.execute(sql,[dict['ds'],dict['confirm'],dict['confirm_add'],
-                                dict['suspect'], dict['heal'],dict['heal_add'],
-                                dict['dead'],dict['dead_add']])
+        cursor.execute(sql,[dict['ds'],dict['confirm'],dict['confirm_add'],
+                            dict['now_confirm'], dict['heal'],dict['heal_add'],
+                            dict['dead'],dict['dead_add']])
         conn.commit()
         print(f"{time.asctime()}插入历史数据完毕")
     except:
         traceback.print_exc()
     finally:
         closeConnect(conn,cursor)
+
+def getHistoryByDs(ds):
+    """
+    根据history表的主键（时间）获取数据
+    :param ds:  时间
+    :return:
+    """
+    try:
+        print(f"根据{ds}查询历史数据")
+        sql = "select * from history where ds = \'"+ds+"\'"
+        print('sql语句：',sql)
+        res = query(sql)
+        print(f"根据{ds}历史数据查询完毕")
+        return res
+    except:
+        traceback.print_exc()
 
