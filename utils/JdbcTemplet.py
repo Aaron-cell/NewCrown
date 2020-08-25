@@ -37,20 +37,18 @@ def query(sql,*args):
 def insertHistery(dict):
     """
     根据传入的dict字典 循环插入表中
-    :param data: 数据列表 封装的是字典
+    :param data: 字典
     :return:
     """
     cursor = None
     conn = None
     try:
         conn,cursor = getConnect()
-        print(f"{time.asctime()}开始插入历史数据")
         sql = "insert into history values (%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql,[dict['ds'],dict['confirm'],dict['confirm_add'],
                             dict['now_confirm'], dict['heal'],dict['heal_add'],
                             dict['dead'],dict['dead_add']])
         conn.commit()
-        print(f"{time.asctime()}插入历史数据完毕")
     except:
         traceback.print_exc()
     finally:
@@ -60,15 +58,45 @@ def getHistoryByDs(ds):
     """
     根据history表的主键（时间）获取数据
     :param ds:  时间
-    :return:
+    :return: res 元组
     """
     try:
-        print(f"根据{ds}查询历史数据")
         sql = "select * from history where ds = \'"+ds+"\'"
-        print('sql语句：',sql)
         res = query(sql)
-        print(f"根据{ds}历史数据查询完毕")
         return res
     except:
         traceback.print_exc()
 
+def getDetailsByTime(update_time):
+    """
+    根据details表的字段（update_time）查询数据
+    :param update_time:  时间
+    :return: res 元组
+    """
+    try:
+        sql = "select * from details where update_time = \'"+update_time+"\'"
+        res = query(sql)
+        return res
+    except:
+        traceback.print_exc()
+
+
+def insertDetails(list):
+    """
+    根据传入的list列表 list中封装的是元组
+    这里使用executemany 批量插入 多倍快乐
+    :param data: 数据列表 封装的是元组
+    :return:
+    """
+    cursor = None
+    conn = None
+    try:
+        conn,cursor = getConnect()
+        sql = "insert into details (update_time,province,city,confirm,confirm_add,heal,dead)" \
+              "values (%s,%s,%s,%s,%s,%s,%s)"
+        cursor.executemany(sql,list)
+        conn.commit()
+    except:
+        traceback.print_exc()
+    finally:
+        closeConnect(conn,cursor)

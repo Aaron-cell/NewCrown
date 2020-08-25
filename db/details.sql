@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80015
 File Encoding         : 65001
 
-Date: 2020-08-23 19:19:21
+Date: 2020-08-25 21:48:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `details`;
 CREATE TABLE `details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT NULL,
   `province` varchar(50) DEFAULT NULL COMMENT '省',
   `city` varchar(50) DEFAULT NULL COMMENT '市',
   `confirm` int(11) DEFAULT NULL COMMENT '累计确诊',
@@ -29,4 +29,4 @@ CREATE TABLE `details` (
   `heal` int(11) DEFAULT NULL COMMENT '累计治愈',
   `dead` int(11) DEFAULT NULL COMMENT '累计死亡',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=463 DEFAULT CHARSET=utf8;
