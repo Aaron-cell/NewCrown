@@ -1,4 +1,4 @@
-import utils.jdbcTemplet as jdbc
+import utils.JdbcTemplet as jdbc
 import time
 import random
 
