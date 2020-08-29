@@ -100,3 +100,23 @@ def insertDetails(list):
         traceback.print_exc()
     finally:
         closeConnect(conn,cursor)
+
+def insertHotSearch(hotList):
+    """
+    根据传入的list列表 list中封装的是元组
+    这里使用executemany 批量插入 多倍快乐
+    :param data: 数据列表 封装的是元组
+    :return:
+    """
+    cursor = None
+    conn = None
+    try:
+        conn,cursor = getConnect()
+        sql = "insert into hotsearch (dt,content)" \
+              "values (%s,%s)"
+        cursor.executemany(sql,hotList)
+        conn.commit()
+    except:
+        traceback.print_exc()
+    finally:
+        closeConnect(conn,cursor)
