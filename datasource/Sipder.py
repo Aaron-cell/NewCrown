@@ -1,8 +1,8 @@
 import requests
 import json
 from selenium.webdriver import Chrome,ChromeOptions
-import os
 import time
+from utils.RootPath import getRoot_Path
 
 def getTencentData():
     #腾讯疫情抓取资源请求url
@@ -22,15 +22,13 @@ def getHotData():
     抓取百度 关于疫情的热点数据
     :return:
     """
-    #项目根路径
-    root_path = os.path.abspath(os.path.dirname(__file__))
-    index = root_path.rindex('\\')
-    root_path = str(root_path[0:index].replace('\\','/'))
+    #项目根路径 用于指定谷歌插件的路径
+    root_Path = getRoot_Path()
     #隐藏游览器
     option = ChromeOptions()
     option.add_argument("--headless")
     option.add_argument("--no--sandbox") #b部署到linux时需要设置 无插盘模式
-    browser = Chrome(options=option,executable_path= root_path+'/plugin/chromedriver.exe')
+    browser = Chrome(options=option,executable_path= root_Path+'/plugin/chromedriver.exe')
     url = "https://voice.baidu.com/act/virussearch/virussearch?from=osari_map&tab=0&infomore=1"
     browser.get(url)
     #打印获取的数据

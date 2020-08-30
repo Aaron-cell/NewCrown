@@ -1,6 +1,5 @@
 from datasource.Sipder import getTencentData,getHotData
 import utils.JdbcTemplet as jdbc
-import json
 import time
 
 def insertHistory(data):
