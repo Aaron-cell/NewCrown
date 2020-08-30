@@ -79,9 +79,9 @@ def insertHotSearch(hotList):
 
 if __name__ == "__main__":
     #测试 好不好用
-    # data = getTencentData()
-    # insertHistory(data)
-    # insertDetails(data)
+    data = getTencentData()
+    insertHistory(data)
+    insertDetails(data)
     hotArray = getHotData()
     insertHotSearch(hotArray)
 
