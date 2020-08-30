@@ -1,6 +1,6 @@
 function gettime() {
 	$.ajax({
-		url: "/time",
+		url: "/newcrown/time",
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
 			$("#time").html(data)
@@ -13,10 +13,10 @@ function gettime() {
 
 function get_c1_data() {
 	$.ajax({
-		url: "/c1",
+		url: "newcrown/history",
 		success: function(data) {
 			$(".num h1").eq(0).html(data.confirm)
-			$(".num h1").eq(1).html(data.suspect)
+			$(".num h1").eq(1).html(data.now_confirm)
 			$(".num h1").eq(2).html(data.heal)
 			$(".num h1").eq(3).html(data.dead)
 		},
@@ -108,10 +108,10 @@ get_l1_data()
 get_l2_data()
 get_r1_data()
 get_r2_data()
-setInterval(gettime, 1000)
-setInterval(get_c1_data, 1000*10)
-setInterval(get_c2_data, 1000*10)
-setInterval(get_l1_data, 1000*10)
-setInterval(get_l1_data, 1000*10)
-setInterval(get_r1_data, 1000*10)
-setInterval(get_r1_data, 1000*10)
+// setInterval(gettime, 1000)
+// setInterval(get_c1_data, 1000*60)
+// setInterval(get_c2_data, 1000*10)
+// setInterval(get_l1_data, 1000*10)
+// setInterval(get_l1_data, 1000*10)
+// setInterval(get_r1_data, 1000*10)
+// setInterval(get_r1_data, 1000*10)
