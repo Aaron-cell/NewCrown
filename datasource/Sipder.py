@@ -42,6 +42,7 @@ def getHotData():
     hotList =[]
     for hotData in hotArray:
         hotList.append(hotData.text)
+        print(hotData.text)
     browser.close()
     return hotList
 

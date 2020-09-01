@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from utils.RootPath import getRoot_Path
 import time
-from web.Service import HistoryService as historyService
+from web.Service import HistoryService as historyService,DetailsService as detailsService
 
 
 root_Path = getRoot_Path()
@@ -42,6 +42,18 @@ def getHistoryData():
     """
     lastData = historyService.getLastHistory()
     return jsonify({'confirm':lastData[0],'now_confirm':lastData[1],'heal':lastData[2],'dead':lastData[3]})
+
+@app.route('/newcrown/c2',methods=['get'])
+def getDetailsData():
+    """
+    展示首页中国地图中疫情数据
+    :return:
+    """
+    resList =[]
+    lastDetailsData = detailsService.getLastDetails()
+    for res in lastDetailsData:
+        resList.append({'name':res[0],'value':int(res[1])})
+    return jsonify({'data':resList})
 
 
 if __name__ == '__main__':

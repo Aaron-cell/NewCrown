@@ -70,7 +70,35 @@ var optionMap = {
 					}
 				},
 				data: mydata //数据
-			}]
+			},{
+                name: '累积治愈人数',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                itemStyle: {
+                    normal: {
+                        borderWidth: .5,
+                        borderColor: '#009fe8',
+                        areaColor: '#ffefd5'
+                    },
+                    emphasis: {
+                        borderWidth: .5,
+                        borderColor: '#4b0082',
+                        areaColor: '#fff'
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true, //省份名称
+                        fontSize: 8
+                    },
+                    emphasis: {
+                        show: true,
+                        fontSize: 8
+                    }
+                },
+                data: mydata //数据
+            }]
 		};
 
 		//使用制定的配置项和数据显示图表
