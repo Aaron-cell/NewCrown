@@ -117,7 +117,7 @@ var option_left1 = {
       		},
 
       		{
-      			name: '现有疑似',
+      			name: '现有确诊',
       			data: [],
       			type: 'line',
       			// 设置折线上圆点大小

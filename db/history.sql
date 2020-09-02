@@ -25,7 +25,7 @@ CREATE TABLE `history` (
   `confirm_add` int(11) DEFAULT NULL COMMENT '当日新增确诊',
   `now_confirm` int(11) DEFAULT NULL COMMENT '现有确诊',
   `heal` int(11) DEFAULT NULL COMMENT '累计治愈',
-  `heal_add` int(11) DEFAULT NULL COMMENT '累计死亡',
+  `heal_add` int(11) DEFAULT NULL COMMENT '当日新增治愈',
   `dead` int(11) DEFAULT NULL COMMENT '累计死亡',
   `dead_add` int(11) DEFAULT NULL COMMENT '当日新增死亡',
   PRIMARY KEY (`ds`)

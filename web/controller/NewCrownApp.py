@@ -1,5 +1,4 @@
 from flask import Flask,jsonify
-from flask import request
 from flask import render_template
 from utils.RootPath import getRoot_Path
 import time
@@ -55,6 +54,36 @@ def getDetailsData():
         resList.append({'name':res[0],'value':int(res[1])})
     return jsonify({'data':resList})
 
+@app.route('/newcrown/l1',methods=['get'])
+def getAllHistory():
+    """
+    显示全国累计趋势折线图
+    :return:
+    """
+    res = historyService.getAllHistory()
+    day,confirm,now_confirm,heal,dead = [],[],[],[],[]
+    for a,b,c,d,e in res:
+        day.append(a.strftime("%m-%d"))
+        confirm.append(b)
+        now_confirm.append(c)
+        heal.append(d)
+        dead.append(e)
+    return jsonify({"day":day,"confirm":confirm,"now_confirm":now_confirm,"heal":heal,"dead":dead})
+
+@app.route('/newcrown/l2',methods=['get'])
+def getAddHistory():
+    """
+    显示全国新增趋势折线图
+    :return:
+    """
+    res = historyService.getAddHistory()
+    day,confirm_add,heal_add,dead_add = [],[],[],[]
+    for a,b,c,d in res:
+        day.append(a.strftime("%m-%d"))
+        confirm_add.append(b)
+        heal_add.append(c)
+        dead_add.append(d)
+    return jsonify({"day":day,"confirm_add":confirm_add,"heal_add":heal_add,"dead_add":dead_add})
 
 if __name__ == '__main__':
     #host='0.0.0.0'可被外网访问 port指定端口号 debug= true 开启debug模式
