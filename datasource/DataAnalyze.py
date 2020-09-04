@@ -1,6 +1,8 @@
-from datasource.Sipder import getTencentData,getHotData
+from datasource.Sipder import getTencentData,getHotData,getHotSearchData
 import utils.JdbcTemplet as jdbc
 import time
+import re
+import string
 
 def insertHistory(data):
     """
@@ -60,18 +62,14 @@ def insertDetails(data):
     jdbc.insertDetails(details)
     pass
 
-def insertHotSearch(hotList):
+def insertHotSearch(hotSearchList,dt):
     """
-    解析从百度抓取的疫情热点数据，然后插入到数据库
+    解析从百度抓取的热点数据，然后插入到数据库
     :param hotList:
     :return:
     """
-    ds = time.strftime("%Y-%m-%d %X")
-    print(ds)
-    hotSearchList =[] #热点数据列表
-    for hotData in hotList :
-        hotSearchList.append((ds,hotData))
-
+    #删除今日 热搜数据 在进行插入操作
+    jdbc.delHotSearchData(dt)
     jdbc.insertHotSearch(hotSearchList)
     pass
 
@@ -81,6 +79,6 @@ if __name__ == "__main__":
     data = getTencentData()
     insertHistory(data)
     insertDetails(data)
-    hotArray = getHotData()
-    insertHotSearch(hotArray)
+    hotSearchList,dt = getHotSearchData()
+    insertHotSearch(hotSearchList,dt)
 

@@ -112,11 +112,30 @@ def insertHotSearch(hotList):
     conn = None
     try:
         conn,cursor = getConnect()
-        sql = "insert into hotsearch (dt,content)" \
-              "values (%s,%s)"
+        sql = "insert into hotsearch (dt,content,search_num)" \
+              "values (%s,%s,%s)"
         cursor.executemany(sql,hotList)
         conn.commit()
     except:
         traceback.print_exc()
     finally:
         closeConnect(conn,cursor)
+
+def delHotSearchData(dt):
+    """
+    插入前先将当日热搜数据删除
+    :param dt:
+    :return:
+    """
+    cursor = None
+    conn = None
+    try:
+        conn,cursor = getConnect()
+        sql='delete from hotsearch where dt =\''+dt+'\''
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        traceback.print_exc()
+    finally:
+        closeConnect(conn,cursor)
+

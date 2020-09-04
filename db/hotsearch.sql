@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80015
 File Encoding         : 65001
 
-Date: 2020-08-29 19:18:43
+Date: 2020-09-04 11:24:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,5 +23,6 @@ CREATE TABLE `hotsearch` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` datetime NOT NULL COMMENT '更新时间',
   `content` varchar(255) NOT NULL COMMENT '热搜数据',
+  `search_num` int(10) unsigned zerofill NOT NULL COMMENT '搜索次数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
