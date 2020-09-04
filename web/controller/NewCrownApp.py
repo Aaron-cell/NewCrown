@@ -85,6 +85,19 @@ def getAddHistory():
         dead_add.append(d)
     return jsonify({"day":day,"confirm_add":confirm_add,"heal_add":heal_add,"dead_add":dead_add})
 
+@app.route('/newcrown/r1',methods=['get'])
+def getTop5City():
+    """
+    获取国内疫情累计确诊人数前五的城市
+    :return:
+    """
+    res = detailsService.getLastConfirm();
+    province,confirm =[],[]
+    for a,b in res:
+        province.append(a)
+        confirm.append(int(b))
+    return jsonify({"province":province,"confirm":confirm})
+
 if __name__ == '__main__':
     #host='0.0.0.0'可被外网访问 port指定端口号 debug= true 开启debug模式
     app.run(host = '127.0.0.1',port='8080',debug=True)
