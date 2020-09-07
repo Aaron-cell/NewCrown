@@ -1,9 +1,22 @@
+import os
+import sys
+import platform
+# 将项目根路径设置为环境变量
+system = platform.system()
+curPath = os.path.abspath(os.path.dirname(__file__))
+if system == 'Windows':
+    rootPath = curPath[:curPath.find("NewCrown\\")+len("NewCrown\\")]  # 获取myProject，也就是项目的根路径
+    rootPath = str(rootPath).replace('\\','/')#路径\换成/   windows环境下
+elif system == 'Linux':
+    rootPath = curPath[:curPath.find("NewCrown/")+len("NewCrown/")] #Linux环境下
+else:
+    print('当前系统类型无法识别')
+sys.path.append(rootPath) #将项目所在路径加入python模块搜索路径
 from flask import Flask,jsonify
 from flask import render_template
-from utils.RootPath import getRoot_Path
 import time
 from jieba.analyse import extract_tags
-
+from utils.RootPath import getRoot_Path
 from web.Service import HistoryService as historyService,\
     DetailsService as detailsService,HotSearchService as hotSearchService
 
@@ -121,7 +134,6 @@ def getToDayHotSearch():
     return jsonify({"keyWordsCloud":keyWordsCloud})
 
 
-
 if __name__ == '__main__':
     #host='0.0.0.0'可被外网访问 port指定端口号 debug= true 开启debug模式
-    app.run(host = '127.0.0.1',port='8080',debug=True)
+    app.run(host = '0.0.0.0',port='8080',debug=False)
