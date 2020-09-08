@@ -72,8 +72,8 @@ def insertHotSearch(hotSearchList,dt):
 
 
 if __name__ == "__main__":
-    len = len(sys.argv)
-    if len == 1:
+    length = len(sys.argv)
+    if length == 1:
         msg = """
             请输入一下参数:
             up_tencent 更新腾讯疫情数据
