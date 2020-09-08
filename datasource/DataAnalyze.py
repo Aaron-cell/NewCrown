@@ -1,9 +1,6 @@
 from datasource.Sipder import getTencentData,getHotData,getHotSearchData
 import utils.JdbcTemplet as jdbc
-import time
-import re
-import string
-
+import sys
 def insertHistory(data):
     """
     将抓取的数据解析 插入数据库
@@ -75,10 +72,24 @@ def insertHotSearch(hotSearchList,dt):
 
 
 if __name__ == "__main__":
-    #测试 好不好用
-    data = getTencentData()
-    insertHistory(data)
-    insertDetails(data)
-    hotSearchList,dt = getHotSearchData()
-    insertHotSearch(hotSearchList,dt)
+    len = len(sys.argv)
+    if len == 1:
+        msg = """
+            请输入一下参数:
+            up_tencent 更新腾讯疫情数据
+            up_baidu 更新百度热点数据
+            """
+        print(msg)
+    else:
+        arg = sys.argv[1]
+        if arg == 'up_tencent':
+            data = getTencentData()
+            insertHistory(data)
+            insertDetails(data)
+        elif arg == 'up_baidu':
+            hotSearchList, dt = getHotSearchData()
+            insertHotSearch(hotSearchList, dt)
+        else:
+            msg = '无效参数，请仔细检查！'
+            print(msg)
 

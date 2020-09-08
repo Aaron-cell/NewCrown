@@ -43,8 +43,8 @@ function get_l1_data() {
 		url:"/newcrown/l1",
 		success: function(data) {
 			option_left1.xAxis.data = data.day
-			option_left1.series[0].data = data.now_confirm
-			option_left1.series[1].data = data.suspect
+			option_left1.series[0].data = data.confirm
+			option_left1.series[1].data = data.now_confirm
 			option_left1.series[2].data = data.heal
 			option_left1.series[3].data = data.dead
 			ec_left1.setOption(option_left1)

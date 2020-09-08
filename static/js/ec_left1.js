@@ -21,7 +21,7 @@ var option_left1 = {
       		// x: 'left',
       		// y 设置垂直安放位置，默认全图顶端，可选值：'top' ¦ 'bottom' ¦ 'center' ¦ {number}（y坐标，单位px）
       		// y: 'top',
-      		data: ['累计确诊', '现有疑似', '累计治愈','累计死亡'],
+      		data: ['累计确诊', '现有确诊', '累计治愈','累计死亡'],
 			left: 'right'
       	},
 
