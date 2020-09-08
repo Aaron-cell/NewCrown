@@ -91,9 +91,9 @@ function get_r1_data() {
 
 function get_r2_data() {
 	$.ajax({
-		url:"/r2",
+		url:"/newcrown/r2",
 		success: function(data) {
-			option_right2.series[0].data = data.kws
+			option_right2.series[0].data = data.keyWordsCloud
 			ec_right2.setOption(option_right2)
 		},
 		error: function(xhr, type, errorThrown) {
@@ -109,10 +109,10 @@ get_l1_data()
 get_l2_data()
 get_r1_data()
 get_r2_data()
-// setInterval(gettime, 1000)
-// setInterval(get_c1_data, 1000*60)
-// setInterval(get_c2_data, 1000*10)
-// setInterval(get_l1_data, 1000*10)
-// setInterval(get_l1_data, 1000*10)
-// setInterval(get_r1_data, 1000*10)
-// setInterval(get_r1_data, 1000*10)
+setInterval(gettime, 1000)
+setInterval(get_c1_data, 1000*60*10) //10分钟
+setInterval(get_c2_data, 1000*60*10)
+setInterval(get_l1_data, 1000*60*10)
+setInterval(get_l1_data, 1000*60*10)
+setInterval(get_r1_data, 1000*60*10)
+setInterval(get_r1_data, 1000*60*10)
