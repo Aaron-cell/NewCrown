@@ -16,6 +16,7 @@ def getRoot_Path():
         rootPath = curPath[:curPath.find("NewCrown/")+len("NewCrown/")] #Linux环境下
     else:
         print('当前系统类型无法识别')
+    print(rootPath)
     return rootPath
 
 if __name__ == '__main__':

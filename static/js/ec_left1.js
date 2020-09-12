@@ -7,13 +7,13 @@ var option_left1 = {
       	title: {
       		text: '全国累计趋势',
       		// subtext: '模拟数据',
-      		// x: 'center',
+      		x: 'top',
 			textStyle: {
 				
 			},
 			left: 'left'
       	},
-		
+
       	legend: {
       		// orient 设置布局方式，默认水平布局，可选值：'horizontal'（水平） ¦ 'vertical'（垂直）
       		// orient: 'horizontal',
@@ -22,7 +22,7 @@ var option_left1 = {
       		// y 设置垂直安放位置，默认全图顶端，可选值：'top' ¦ 'bottom' ¦ 'center' ¦ {number}（y坐标，单位px）
       		// y: 'top',
       		data: ['累计确诊', '现有确诊', '累计治愈','累计死亡'],
-			left: 'right'
+			left: 'left'
       	},
 
       	//  图表距边框的距离,可选值：'百分比'¦ {number}（单位px）
@@ -74,7 +74,7 @@ var option_left1 = {
       	yAxis: {
       		// name: '数值',
       		type: 'value',
-      		// min: 0, // 设置y轴刻度的最小值
+      		min: 0, // 设置y轴刻度的最小值
       		// max: 1800, // 设置y轴刻度的最大值
       		// splitNumber: 9, // 设置y轴刻度间隔个数
       		axisLine: {

@@ -117,7 +117,7 @@ var option_left2 = {
       		},
 
       		{
-      			name: '新增确诊',
+      			name: '新增治愈',
       			data: [],
       			type: 'line',
       			// 设置折线上圆点大小
